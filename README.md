@@ -58,3 +58,5 @@ kumpulan dotfiles hasil curi dari mana saja
 ## preview
 ### clean
 <img src="screenshot_20190318-031614_1920x1080.png">
+### busy
+<img src="screenshot_20190313-191525_1920x1080.png">
