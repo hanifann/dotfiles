@@ -61,3 +61,8 @@ kumpulan dotfiles hasil curi dari mana saja
 
 ### busy
 <img src="screenshot_20190313-191525_1920x1080.png">
+
+
+<footer>
+   untuk sekarang segini dlu ntar kalo ada inspirasi upload lagi :D
+</footer
