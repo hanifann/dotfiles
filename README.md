@@ -1,4 +1,5 @@
 # My Openbox dotfiles
+This is a repository dedicated to back-up and share my dotfiles when needed.
 <img src="header.png">
 
 <h6>Introduction</h6><hr>
