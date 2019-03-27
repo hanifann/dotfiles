@@ -1,4 +1,4 @@
-#My Openbox dotfiles
+# My Openbox dotfiles
 <img src="header.png">
 
 <h6>Introduction</h6><hr>
