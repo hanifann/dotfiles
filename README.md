@@ -53,6 +53,7 @@ kumpulan dotfiles hasil curi dari mana saja
     <td>Text editor</td>
     <td>nvim, geany, atom</td>
    </tr>
+</table>
    
 ## preview
 
