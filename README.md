@@ -1,3 +1,3 @@
 # dotfiles
 
-<img src="header.png"
+<img src="header.png">
