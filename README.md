@@ -11,7 +11,7 @@ kumpulan dotfiles hasil curi dari mana saja
   </tr>
   <tr>
     <td>Fav WM(s)</td>
-    <td>Oepnbox, i3, bspwm, 2bwm</td>
+    <td>Openbox, i3, bspwm, 2bwm</td>
    </tr>
    <tr>
     <td>Shell</td>
