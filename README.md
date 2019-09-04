@@ -56,10 +56,7 @@ kumpulan dotfiles hasil curi dari mana saja
 </table>
    
 ## preview
-### clean
 <img src="screenshot_20190318-031614_1920x1080.png">
-
-### busy
 <img src="screenshot_20190313-191525_1920x1080.png">
 <img src="screenshot_20190327-202945_1920x1080.png">
 
