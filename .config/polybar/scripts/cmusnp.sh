@@ -24,20 +24,20 @@ then
 	title=$( cmus-remote -Q | grep tag\ title\ | sed 's/tag title //' )
 
 	np_string="$title - $artist"
-	np_string=$( trunc 25 "$np_string" )
+	np_string=$( trunc 35 "$np_string" )
 
 	spc=$(( $(( 32 - ${#np_string} ))/2 ))
 	spc="$( printf "%${spc}s" )"
 
 	if [[ "$status" = *playing* ]]
 	then
-		echo "$spc%{F${active}}$np_string$spc"
+		echo -ne "|| $np_string"
 	elif [[ "$status" = *paused* ]]
 	then
-		echo "$spc%{F${inactive}}$np_string$spc"
+		echo -ne ">  $np_string"
 	elif [[ "$status" = *stopped* ]]
 	then
-		echo "%{F${inactive}}stopped"
+		echo -ne ". stopped"
 	fi
 
 else

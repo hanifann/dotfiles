@@ -5,16 +5,18 @@ while getopts hs options
 do
 	case $options in
 		h)  # hide
-            pkill -f polybar\ music
-            pkill -f polybar\ np
+            pkill -f polybar\ artist
+            pkill -f polybar\ track
+            pkill -f polybar\ album
 			;;
 		s)  # show
-            if pgrep -f polybar\ np > /dev/null; then
+            if pgrep -f polybar\ artist > /dev/null; then
                 ~/.config/polybar/scripts/popups/cover.sh
             else
-                polybar np &
-                polybar music &
-                ~/.config/polybar/scripts/popups/cover.sh
+                polybar artist &
+                polybar track  &
+                polybar album  &
+                ~/config/polybar/scripts/popups/cover.sh
             fi
 			;;
 	esac

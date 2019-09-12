@@ -1,15 +1,16 @@
- This config uses the new syntax (which isn't merged upstream)
+; This config uses the new syntax (which isn't merged upstream)
 
 [settings]
 throttle-ms = 50
 throttle-limit = 3
 
-[bar/bw]
+[bar/bottom]
 monitor = eDP-1
 bottom = true
 width = 100%
 height = 27
 offset-y = 5
+
 ;background = #e21645
 background = #00ffffff
 foreground = #292929
@@ -329,7 +330,7 @@ date = %Y-%m-%d %H:%M
 
 [module/wireless-network]
 ; type = internal/network
-; interface = wlo1
+; interface = net1
 ; interval = 3.0
 ; ping-interval = 10
 ;
