@@ -59,8 +59,4 @@ kumpulan dotfiles hasil curi dari mana saja
 <img src="screenshot_20190318-031614_1920x1080.png">
 <img src="screenshot_20190313-191525_1920x1080.png">
 <img src="screenshot_20190327-202945_1920x1080.png">
-
-
-<footer>
-   untuk sekarang segini dlu ntar kalo ada inspirasi upload lagi :D
-</footer
+<img src="ss1.png">
