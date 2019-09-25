@@ -1,0 +1,337 @@
+[colors]
+background = ;#B2111111 ${xrdb:background}
+foreground = ${xrdb:foreground}
+foreground-alt= #528BFF
+black = ${xrdb:color0}
+red = ${xrdb:color1}
+green = ${xrdb:color2}
+blue = ${xrdb:color4}
+yellow = ${xrdb:color3}
+magenta = ${xrdb:color5}
+cyan = ${xrdb:color6}
+white = ${xrdb:color7}
+grey = ${xrdb:color8}
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+[bar/toolbar]
+width = 100%
+height = 35
+offset-y = 1%
+override-redirect = true
+
+;Make bars invisible in full screen
+wm-restack = i3
+enable-ipc = true
+
+font-0 = Fira Code:pixelsize=10;3
+font-1 = octicons:pixelsize=12;3
+font-2 = Weather Icons:size=10;4
+font-3 = FontAwesome5Free:style=Solid:pixelsize=12;4
+font-4 = FontAwesome5Brands:style=Solid:pixelsize=12;4
+font-5 = MaterialIcons:pixelsize=11;4
+font-6 = Wuncon Siji:pixelsize=11;4
+
+padding-left = 4
+padding-right = 4
+
+background = #000f0f0f
+foreground = ${colors.foreground}
+
+modules-left = wifi
+modules-center = ewmh
+modules-right = battery clock
+
+[module/mpd]
+type = internal/mpd
+
+label-offline =  mpd is offline
+format-online = <label-song>
+format-online-background = #181818
+format-online-padding = 2
+
+label-song-foreground = #FFFFFF
+;#151515
+label-song =  %title%
+
+[module/battery]
+type = internal/battery
+
+full-at = 99
+battery = BAT1
+adapter = ADP1
+poll-interval = 5
+
+format-charging-foreground = #FFF
+format-charging-background = #181818
+format-discharging-foreground = #FFF
+format-discharging-background = #181818
+format-full-background = #181818
+
+format-charging-margin = 1
+
+format-charging-padding = 1
+format-discharging-padding = 1
+format-charging = <animation-charging>
+
+format-discharging = <ramp-capacity> <label-discharging>
+label-charging = %percentage%%
+label-discharging = %percentage%%
+label-full = Fully charged
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+
+animation-charging-framerate = 750
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-3 = 
+animation-discharging-4 = 
+animation-discharging-framerate = 500
+
+
+[module/wifi]
+type = internal/network
+
+interface = wlo1
+interval = 1
+
+label-connected = %{A} %{A:wicd-client &:} %essid%%{A}
+format-connected-foreground = #fff
+format-connected-background = ${colors.black}
+format-connected-padding = 2
+
+format-disconnected-padding = 1
+format-disconnected-foreground =#fff
+format-disconnected-background = ${colors.black}
+
+label-disconnected = %{A:wicd-client &:} No Waifu Detected%{A}
+
+[module/weather]
+label-padding-left = 0
+type = custom/script
+exec = "sh $HOME/.config/polybar/weather.sh"
+interval = 600
+label-font = 3
+
+format-foreground = ${colors.blue}
+
+label = %output%
+
+[module/xwindow]
+label-padding-left = 1
+type = internal/xwindow
+
+label = %title%
+label-maxlen = 40
+
+format-foreground = ${colors.foreground}
+format-prefix = " "
+format-suffix = " "
+
+format-margin = 5
+
+
+[module/clock]
+type = custom/script
+exec = "sh $HOME/.config/polybar/modules/time.sh"
+interval = 1.0
+
+format = <label>
+format-foreground = #FFF
+;#151515
+;#F02E6E
+format-background = #181818
+;#00000000 -> transparent
+format-padding = 1
+
+label = %output%
+
+
+[module/date]
+type = internal/date
+
+date =  %d/%m
+
+format = <label>
+format-foreground = #fff
+format-background = #181818
+
+label = %date%
+
+
+
+[module/i3stock]
+type = internal/i3
+
+; Only show workspaces defined on the same output as the bar
+;
+; Useful if you want to show monitor specific workspaces
+; on different bars
+;
+; Default: false
+pin-workspaces = true
+
+; This will split the workspace name on ':'
+; Default: false
+strip-wsnumbers = true
+
+; Sort the workspaces by index instead of the default
+; sorting that groups the workspaces by output
+; Default: false
+index-sort = true
+
+; Create click handler used to focus workspace
+; Default: true
+enable-click = false
+
+; Create scroll handlers used to cycle workspaces
+; Default: true
+
+; Wrap around when reaching the first/last workspace
+; Default: true
+wrapping-scroll = false
+
+; Set the scroll cycle direction
+; Default: true
+reverse-scroll = false
+
+; Use fuzzy (partial) matching on labels when assigning
+; icons to workspaces
+; Example: code;♚ will apply the icon to all workspaces
+; containing 'code' in the label
+; Default: false
+;fuzzy-match = true
+
+; ws-icon-[0-9]+ = label;icon
+; NOTE: The label needs to match the name of the i3 workspace
+ws-icon-0 = 1;♚
+ws-icon-1 = 2;♛
+ws-icon-2 = 3;♜
+ws-icon-3 = 4;♝
+ws-icon-4 = 5;♞
+ws-icon-default = ♟
+; NOTE: You cannot skip icons, e.g. to get a ws-icon-6
+; you must also define a ws-icon-5.
+
+; Available tags:
+;   <label-state> (default) - gets replaced with <label-(focused|unfocused|visible|urgent)>
+;   <label-mode> (default)
+format = <label-state> <label-mode>
+
+; Available tokens:
+;   %mode%
+; Default: %mode%
+label-mode = %mode%
+label-mode-padding = 2
+label-mode-background = #e60053
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-focused = "■"
+;label-focused-background = #151515
+;#3f3f3f
+label-focused-padding = 1
+label-focused-foreground = #FFFFFF
+;#d3869b
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-unfocused = "□"
+label-unfocused-padding = 1
+label-unfocused-foreground = #151515
+
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+format-background = ${colors.background}
+
+ws-icon-0 = "1;"
+ws-icon-1 = "2;"
+ws-icon-2 = "3;"
+ws-icon-3 = "4;"
+ws-icon-4 = "5;"
+ws-icon-5 = "6;"
+
+;ws-icon-0 = "1;"
+;ws-icon-1 = "2;"
+;ws-icon-2 = "3;"
+;ws-icon-3 = "4;"
+;ws-icon-4 = "5;"
+;ws-icon-5 = "6;"
+;ws-icon-6 = "7;"
+;ws-icon-7 = "8;"
+
+index-sort = true
+wrapping-scroll = true
+strip-wsnumbers = true
+
+;label-focused = ""
+label-focused = "%icon%"
+label-focused-foreground = #83a598
+label-focused-background = #00000000
+;${colors.cyan}
+label-focused-padding = 1
+
+;label-unfocused = ""
+label-unfocused = "%icon%"
+label-unfocused-padding = 1
+label-unfocused-background = #00000000
+;#FFFFFF
+;${colors.grey}
+label-unfocused-foreground = #d3869b
+;${colors.green}
+
+label-urgent = "%icon%"
+label-urgent-foreground = #ffffff
+label-urgent-background = ${colors.red}
+label-urgent-padding = 2
+
+label-visible = "%icon%"
+label-visible-padding = 2
+
+[module/ewmh]
+type = internal/xworkspaces
+pin-workspaces = true
+enable-scroll = true
+
+format = <label-state>
+
+label-active = ×
+label-active-foreground = #89ddff
+label-active-background = #181818
+label-active-padding = 1
+
+label-empty = •
+label-empty-foreground = #FFFFFF
+label-empty-background = #181818
+label-empty-padding = 1
+
+label-urgent = !
+label-urgent-foreground = #EC5f67
+label-urgent-background = #181818
+label-urgent-padding = 1
