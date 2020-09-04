@@ -1,0 +1,147 @@
+[colors]
+background = ;#B2111111 ${xrdb:background}
+foreground = ${xrdb:foreground}
+foreground-alt= #528BFF
+black = ${xrdb:color0}
+red = ${xrdb:color1}
+green = ${xrdb:color2}
+blue = ${xrdb:color4}
+yellow = ${xrdb:color3}
+magenta = ${xrdb:color5}
+cyan = ${xrdb:color6}
+white = ${xrdb:color7}
+grey = ${xrdb:color8}
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+[bar/beer]
+width = 75%
+height = 35
+offset-y = 1%
+bottom = true
+override-redirect = true
+
+;Make bars invisible in full screen
+wm-restack = i3
+enable-ipc = true
+
+font-0 = "Ubuntu Condensed:size=10;2"
+font-1 = "icomoon\-feather:size=10;2"
+font-2 = "xos4 Terminus:size=12;1"
+
+padding-left = 4
+padding-right = 4
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+modules-left = wifi
+modules-center = backlight
+modules-right = alsa clock2
+
+[module/ewmh]
+type = internal/xworkspaces
+pin-workspaces = true
+enable-scroll = true
+
+format = <label-state>
+
+label-active = ×
+label-active-foreground = #89ddff
+label-active-background = #181818
+label-active-padding = 1
+
+label-empty = •
+label-empty-foreground = #FFFFFF
+label-empty-background = #181818
+label-empty-padding = 1
+
+label-urgent = !
+label-urgent-foreground = #EC5f67
+label-urgent-background = #181818
+label-urgent-padding = 1
+
+[module/alsa]
+type = internal/alsa
+
+; Soundcard to be used
+; Usually in the format hw:# where # is the card number
+; You can find the different card numbers in `/proc/asound/cards`
+;;master-soundcard = default
+;;speaker-soundcard = default
+;;headphone-soundcard = default
+
+; Name of the master, speaker and headphone mixers
+; Use the following command to list available mixer controls:
+; $ amixer scontrols | sed -nr "s/.*'([[:alnum:]]+)'.*/\1/p"
+; If master, speaker or headphone-soundcard isn't the default, 
+; use `amixer -c # scontrols` instead where # is the number 
+; of the master, speaker or headphone soundcard respectively
+;
+; Default: Master
+;;master-mixer = Master
+
+; Optionally define speaker and headphone mixers
+; Default: none
+;;speaker-mixer = Speaker
+; Default: none
+;;headphone-mixer = Headphone
+
+; NOTE: This is required if headphone_mixer is defined
+; Use the following command to list available device controls
+; $ amixer controls | sed -r "/CARD/\!d; s/.*=([0-9]+).*name='([^']+)'.*/printf '%3.0f: %s\n' '\1' '\2'/e" | sort
+; You may also need to use `amixer -c # controls` as above for the mixer names
+; Default: none
+;;headphone-id = 9
+
+; Use volume mapping (similar to amixer -M and alsamixer), where the increase in volume is linear to the ear
+; Default: false
+;;mapped = true
+
+; Interval for volume increase/decrease (in percent points)
+; Default: 5
+;;interval = 5
+
+; Available tags:
+;   <label-volume> (default)
+;   <ramp-volume>
+;   <bar-volume>
+format-volume = <ramp-volume> <label-volume>
+
+; Available tags:
+;   <label-muted> (default)
+;   <ramp-volume>
+;   <bar-volume>
+;format-muted = <label-muted>
+
+; Available tokens:
+;   %percentage% (default)
+label-volume = %percentage%%
+
+; Available tokens:
+;   %percentage% (default
+format-muted-prefix = 
+label-muted = " Muted"
+label-muted-foreground = ${colors.foreground}
+background = ${colors.background}
+
+; Only applies if <ramp-volume> is used
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-3 = 
+ramp-volume-4 = 
+
+; If defined, it will replace <ramp-volume> when
+; headphones are plugged in to `headphone_control_numid`
+; If undefined, <ramp-volume> will be used for both
+; Only applies if <ramp-volume> is used
+ramp-headphones-0 = 
+ramp-headphones-1 = 
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_

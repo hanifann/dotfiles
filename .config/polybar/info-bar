@@ -1,0 +1,435 @@
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+[settings]
+throttle-output = 5
+throttle-output-for = 10
+throttle-input-for = 30
+screenchange-reload = true
+compositing-background = over
+compositing-foreground = over
+compositing-overline = over
+compositing-underline = over
+compositing-border = over
+
+; Define fallback values used by all module formats
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+format-underline =
+format-overline =
+format-spacing =
+format-padding =
+format-margin =
+format-offset =
+
+[colors]
+background =  ${xrdb:color0}
+background-alt =  ${xrdb:color8}
+foreground =  ${xrdb:color7}
+foreground-alt =  ${xrdb:color6}
+red =  ${xrdb:color1}
+
+
+[bar/mainbar-i3]
+monitor = eDP1
+monitor-strict = false
+override-redirect = false
+width = 100%
+height = 25
+offset-x = 0%
+offset-y = 0.0%
+radius = 0.0
+;radius-top = 4
+;radius-bottom = 4
+fixed-center = false
+bottom = false
+;separator = |
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 4
+line-color = #f00
+
+border-size = 6
+;border-left-size = 25
+;border-right-size = 25
+;border-top-size = 0
+;border-bottom-size = 25
+border-color = #00000000
+
+padding-left = 0
+padding-right = 1
+
+module-margin-left = 1
+module-margin-right = 1
+
+; Enable support for inter-process messaging
+; See the Messaging wiki page for more details.
+enable-ipc = true
+;wm-restack = i3
+
+font-0 = "Terminus (TTF):size=9;2"
+font-1 = siji:pixelsize=10;3
+font-2 = "Terminus (TTF):size=9;2"
+font-3 = Weather Icons:size=11;3
+font-4 =iosevka Nerd Font:size=11;3
+
+modules-left = xworkspaces
+modules-center = 
+modules-right = memory_bar pulseaudio2 time
+
+;tray-detached = false
+;tray-offset-x = 0
+;tray-offset-y = 0
+;tray-padding = 2
+;tray-maxsize = 20
+;tray-scale = 1.0
+;tray-position = right
+;tray-background = ${colors.background}
+
+
+;;;;;;;;;;;;;;;;;
+[module/launcher]
+;;;;;;;;;;;;;;;;;
+type = custom/text
+
+content = "%{T3}▟%{T-}"
+
+content-background = ${colors.background}
+content-foreground =
+content-padding = 0
+click-left = paintmybox
+
+
+[module/time]
+type = internal/date
+interval = 5
+time ="%%{F#af3a03}%%{T2}%%{T-}%%{F-}%I:%M %p"
+label =%time%
+format=<label>
+format-foreground = #e5e9f0
+format-background = ${colors.background}
+format-prefix =" "
+format-prefix-foreground = ${colors.foreground}
+
+[module/cpu_bar]
+type = internal/cpu
+interval = 0.5
+format =<label> <bar-load>
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground}
+format-prefix-background = ${colors.background}
+label-foreground = ${colors.foreground}
+label-background = ${colors.background}
+label = "%percentage%%"
+bar-load-width = 6
+bar-load-gradient = false
+bar-load-indicator ="▰"
+bar-load-indicator-foreground = ${colors.red}
+bar-load-indicator-background = ${colors.background}
+bar-load-indicator-font = 1
+bar-load-fill ="▰"
+bar-load-fill-foreground = ${colors.red}
+bar-load-fill-background = ${colors.background}
+bar-load-foreground-0 = ${colors.red}
+bar-load-background-0 = ${colors.background}
+bar-load-foreground-1 = ${colors.red}
+bar-load-background-1 = ${colors.background}
+bar-load-foreground-2 = ${colors.red}
+bar-load-background-2 = ${colors.background}
+bar-load-foreground-3 = ${colors.red}
+bar-load-background-3 = ${colors.background}
+bar-load-foreground-4 = ${colors.red}
+bar-load-background-4 = ${colors.background}
+bar-load-fill-font = 1
+bar-load-empty ="▱"
+bar-load-empty-foreground = ${colors.foreground}
+bar-load-empty-background = ${colors.background}
+bar-load-empty-font = 1
+
+[module/memory_bar]
+type = internal/memory
+
+interval = 2
+
+format = <label> <bar-used>
+format-background = ${colors.background}
+format-foreground = ${colors.foreground}
+format-padding = 1
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground}
+label = "%mb_used%"
+
+bar-used-width = 6
+bar-used-gradient = false
+
+bar-used-indicator ="▰"
+bar-used-indicator-foreground = ${colors.red}
+bar-used-indicator-font = 1
+
+bar-used-fill = "▰"
+bar-used-foreground-0 = ${colors.red}
+bar-used-background-0 = ${colors.background}
+bar-used-foreground-1 = ${colors.red}
+bar-used-background-1 = ${colors.background}
+bar-used-foreground-2 = ${colors.red}
+bar-used-background-2 = ${colors.background}
+bar-used-foreground-3 = ${colors.red}
+bar-used-background-3 = ${colors.background}
+bar-used-foreground-4 = ${colors.red}
+bar-used-background-4 = ${colors.background}
+bar-used-foreground-5 = ${colors.red}
+bar-used-background-5 = ${colors.background}
+bar-used-foreground-6 = ${colors.red}
+bar-used-background-6 = ${colors.background}
+bar-used-foreground-7 = ${colors.red}
+bar-used-background-7 = ${colors.background}
+bar-used-foreground-8 = ${colors.red}
+bar-used-background-8 = ${colors.background}
+bar-used-fill-font = 1
+bar-used-empty = "▱"
+bar-used-empty-foreground = ${colors.foreground}
+bar-used-empty-font = 1
+
+[module/pulseaudio2]
+type = internal/alsa
+format-volume = %{T2}%{F#fefefe}<ramp-volume> <label-volume> <bar-volume>
+label-volume = %percentage%%
+format-volume-background =${colors.background}
+format-muted = <label-muted>
+label-muted=""
+ramp-volume-0 = 
+ramp-volume-0-foreground = ${colors.foreground}
+ramp-volume-1 = 
+ramp-volume-1-foreground = ${colors.foreground}
+ramp-volume-2 = 
+ramp-volume-2-foreground = ${colors.foreground}
+ramp-volume-3 = 
+ramp-volume-3-foreground = ${colors.foreground}
+ramp-volume-4 = 
+ramp-volume-4-foreground = ${colors.foreground}
+ramp-headphones-0 = 
+ramp-headphones-1 = 
+; Only applies if <bar-volume> is used
+bar-volume-width = 6
+bar-volume-gradient = false
+
+bar-volume-indicator ="▰"
+bar-volume-indicator-foreground = ${colors.red}
+bar-volume-indicator-font = 1
+
+bar-volume-fill ="▰"
+bar-volume-foreground-0 = ${colors.red}
+bar-volume-foreground-1 = ${colors.red}
+bar-volume-foreground-2 = ${colors.red}
+bar-volume-foreground-3 = ${colors.red}
+bar-volume-foreground-4 = ${colors.red}
+bar-volume-foreground-5 = ${colors.red}
+bar-volume-foreground-6 = ${colors.red}
+bar-volume-foreground-7 = ${colors.red}
+bar-volume-foreground-8 = ${colors.red}
+bar-volume-fill-font = 1
+
+bar-volume-empty ="▱"
+bar-volume-empty-foreground = ${colors.foreground}
+bar-volume-empty-font = 1
+
+[module/i3]
+type = internal/i3
+pin-workspaces = true
+strip-wsnumbers = false
+index-sort = false
+enable-click = true
+enable-scroll = true
+wrapping-scroll = false
+reverse-scroll = false
+fuzzy-match = false
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon-9 = 10;
+ws-icon-default = 
+format = <label-state> <label-mode>
+
+label-mode = %mode%
+label-mode-padding = 4
+label-mode-foreground = ${colors.foreground}
+label-mode-background = ${colors.background}
+
+label-focused = %name%
+label-focused-background = ${colors.background}
+label-focused-foreground = ${colors.foreground-alt}
+label-focused-underline = ${colors.red}
+label-focused-padding = 3
+
+label-unfocused = %name%
+label-unfocused-padding = 3
+label-unfocused-background = ${colors.background}
+label-unfocused-foreground = ${colors.foreground}
+label-unfocused-underline = ${colors.background}
+
+label-visible = %name%
+label-visible-background = ${colors.background}
+label-visible-underline = ${colors.background}
+label-visible-padding = 3
+
+label-urgent = %name%
+label-urgent-background = ${colors.foreground}
+label-urgent-foreground = ${colors.red}
+label-urgent-padding = 3
+label-urgent-underline = ${colors.red}
+
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+
+[module/xworkspaces]
+type           = internal/xworkspaces
+pin-workspaces = true
+enable-click   = true
+enable-scroll  = false
+
+format         = <label-state>
+format-background = ${colors.background}
+
+; %index%, %name% or %icon%
+label-active              = %icon%
+label-active-foreground   = ${colors.foreground}
+label-active-padding      = 2
+label-active-underline    = ${colors.red}
+
+label-occupied            = %icon%
+label-occupied-foreground = ${colors.red}
+label-occupied-padding    = 2
+
+label-urgent              = %icon%
+label-urgent-foreground   = ${colors.red}
+label-urgent-padding      = 2
+
+label-empty               = %icon%
+label-empty-foreground    = ${colors.red}
+label-empty-padding       = 2
+
+icon-0 = 1;
+icon-1 = 2;
+icon-2 = 3;
+icon-3 = 4;
+icon-4 = 5;
+
+[module/mpd]
+type = internal/mpd
+
+interval = 2
+
+format-online =<icon-prev> <icon-stop> <toggle> <icon-next>
+format-online-background = ${colors.background}
+format-online-padding = 1
+
+label-song =  "%artist% - %title%"
+label-song-maxlen = 20
+label-song-ellipsis = true
+
+label-offline = "MPD is offline"
+
+icon-play = 
+icon-pause = 
+icon-stop = 
+icon-prev = 
+icon-next = 
+icon-play-foreground =${colors.foreground}
+icon-pause-foreground =${colors.foreground}
+icon-stop-foreground =${colors.foreground}
+icon-prev-foreground =${colors.foreground}
+icon-next-foreground =${colors.foreground}
+
+
+[module/mpd_bar]
+type = internal/mpd
+host = 127.0.0.1
+port = 6600
+interval = 1
+format-online = <label-time> <bar-progress>
+label-time ="%elapsed%"
+label-time-foreground = ${colors.foreground}
+label-time-background = ${colors.background}
+label-offline = "mpd is offline"
+bar-progress-width =15
+bar-progress-background = ${colors.background}
+bar-progress-foreground = ${colors.foreground}
+bar-progress-gradient = false
+
+bar-progress-indicator ="█"
+bar-progress-indicator-foreground = ${colors.foreground}
+bar-progress-indicator-background = ${colors.background}
+bar-progress-indicator-font = 1
+
+bar-progress-fill ="█"
+bar-progress-fill-background= ${colors.background}
+bar-progress-fill-foreground= ${colors.red}
+
+bar-progress-foreground-0 = ${colors.red}
+bar-progress-background-0 = ${colors.background}
+bar-progress-foreground-1 = ${colors.red}
+bar-progress-background-1 = ${colors.background}
+bar-progress-foreground-2 = ${colors.red}
+bar-progress-background-2 = ${colors.background}
+bar-progress-foreground-3 = ${colors.red}
+bar-progress-background-3 = ${colors.background}
+bar-progress-foreground-4 = ${colors.red}
+bar-progress-background-4 = ${colors.background}
+bar-progress-foreground-5 = ${colors.red}
+bar-progress-background-5 = ${colors.background}
+bar-progress-foreground-6 = ${colors.red}
+bar-progress-background-6 = ${colors.background}
+bar-progress-foreground-7 = ${colors.red}
+bar-progress-background-7 = ${colors.background}
+bar-progress-foreground-8 = ${colors.red}
+bar-progress-background-8 = ${colors.background}
+bar-progress-fill-font = 1
+
+bar-progress-empty ="█"
+bar-progress-empty-foreground = ${colors.foreground}
+bar-progress-empty-background = ${colors.background}
+bar-progress-empty-font = 1
+
+;;;;;;;;;;;;;;;;;;;
+;;   MPD_BAR2    ;;
+;;;;;;;;;;;;;;;;;;;
+[module/mpd_bar2]
+type = internal/mpd
+host = 127.0.0.1
+port = 6600
+interval = 1
+format-online = <label-time>
+label-time = "%total%"
+label-time-foreground = ${colors.foreground}
+label-time-background = ${colors.background}
+label-offline = "mpd is offline" mainbar-i3
+
+[module/2bws]
+type              = custom/script
+exec              = ~/scripts/2bws.sh
+interval          = 0.01
+format-padding    = 3
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+scroll-up         = exec wscycle.sh -f
+scroll-down       = exec wscycle.sh -r
+
+[module/weather]
+type = custom/script
+exec = ~/.config/polybar/scripts/openweathermap-fullfeatured.sh
+interval = 600
+label-font = 4
+label-foreground = ${colors.foreground}
+label-background = ${colors.background}
+label-underline = ${colors.background}
+label-overline = ${colors.background}

@@ -1,0 +1,530 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+[colors]
+background = ${xrdb:color0}
+background-alt = ${xrdb:color8}
+foreground = ${xrdb:color3:#222}
+foreground-alt = ${xrdb:color3:#0f0}
+primary = #9b6a46
+secondary = #ab9c71
+alert = #bd2c40
+shade1 = ${xrdb:color0}
+
+;black
+color0 = ${xrdb:color0}
+color8 = ${xrdb:color8}
+;red
+color1 = ${xrdb:color1}
+color9 = ${xrdb:color9}
+;green
+color2 = ${xrdb:color2}
+color10 = ${xrdb:color10}
+;yellow
+color3 = ${xrdb:color3}
+color11 = ${xrdb:color11}
+; blue
+color4 = ${xrdb:color12}
+color12 = ${xrdb:color12}
+; magenta
+color5 = ${xrdb:color5}
+color13 = ${xrdb:color13}
+; cyan
+color6 = ${xrdb:color6}
+color14 = ${xrdb:color14}
+; white
+color7 = ${xrdb:color7}
+color15 = ${xrdb:color15}
+color16= ${xrdb:color16}
+color17= ${xrdb:color17}
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;   mainbar-i3            ;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[bar/top]
+;monitor = eDP1
+width = 33.5%
+height = 25
+offset-x = 33%
+offset-y = 0%
+radius = 0.0
+fixed-center = true
+bottom = true
+radius-top = 8.0
+radius-bottom = 8.0
+background = ${colors.background}
+foreground = ${colors.foreground}
+line-size = 3
+line-color = #f00
+;border-size = 1
+;border-radius = 2
+;border-color = ${colors.color2}
+padding-left = 1
+padding-right = 2
+module-margin-left = 0
+module-margin-right = 0
+font-0 = "Terminus (TTF):size=9;2"
+font-3 = icomoon :size=9;3
+font-4 = "Terminus (TTF):size=9;3"
+font-1 = siji:pixelsize=10;3
+font-2 = Iosevka Nerd Font:style=Medium:size=16;4
+;modules-left = 
+modules-center = right4 wlan right33 right3 alsa right22 right2 date right11 right1 right88 mpd1 left1 right5 right55 cpu right44 right6 memory right66 right7 temperature right77
+;modules-right = 
+;tray-position = right
+;tray-padding = 2
+;tray-background = #0063ff
+;wm-restack = bspwm
+;wm-restack = i3
+override-redirect = true
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;  mainbar-i3-xtra       ;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[bar/mainbar-i3-xtra]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 22
+offset-x = 0%
+offset-y = 0.1%
+radius = 0.0
+fixed-center = true
+bottom = true
+radius-top = 8.0
+radius-bottom = 8.0
+background= #00000000
+foreground = ${colors.foreground}
+line-size = 3
+line-color = #f00
+border-size = 4
+border-color = #00000000
+padding-left = 1
+padding-right = 2
+module-margin-left = 0
+module-margin-right = 0
+font-0 = "Terminus (TTF):size=9;2"
+font-3 = Weather Icons:size=9;1
+font-4 = "Terminus (TTF):size=9;3"
+font-1 = siji:pixelsize=10;3
+font-2 = Iosevka Nerd Font:style=Medium:size=12;3
+modules-left = i3
+;modules-center = 
+;modules-right = 
+;tray-position = right
+;tray-padding = 2
+;tray-background = #0063ff
+;wm-restack = bspwm
+;wm-restack = i3
+override-redirect = false
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+;;++++++++++++++++++++++++++++++++++++++
+;;+++++++++++ MODULES ++++++++++++++++++
+;;++++++++++++++++++++++++++++++++++++++
+
+[module/right4]
+type = custom/text
+content-background = ${colors.background}
+content-foreground = ${colors.color3}
+content = "%{T3}%{T-}"
+content-underline = ${colors.background}
+content-overline = ${colors.background}
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/wlan]
+type = internal/network
+interface = wlo1
+interval = 3.0
+format-connected = <ramp-signal><label-connected>
+format-connected-underline = ${colors.background}
+format-connected-overline = ${colors.background}
+label-connected = " telmex "
+format-disconnected =
+format-disconnected-underline = ${colors.background}
+format-disconnected-overline = ${colors.background}
+label-connected-background = ${colors.color3}
+label-connected-foreground = ${colors.background}
+ramp-signal-0 = ""
+ramp-signal-1 = ""
+ramp-signal-2 = ""
+ramp-signal-3 = ""
+ramp-signal-4 = " "
+ramp-signal-foreground = ${colors.background}
+ramp-signal-background = ${colors.color3}
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;,
+[module/right33]
+type = custom/text
+content-background = ${colors.color3}
+content-foreground = ${colors.color1}
+content = "%{T3}%{T-}"
+content-underline = ${colors.background}
+content-overline = ${colors.background}
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/right3]
+type = custom/text
+content-background = ${colors.color1}
+content-foreground = ${colors.color3}
+content = "%{T3}%{T-}"
+content-underline = ${colors.background}
+content-overline = ${colors.background}
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/alsa]
+type = internal/alsa
+format-volume = <ramp-volume><label-volume>
+label-volume = "%percentage%% "
+label-volume-foreground = ${colors.background}
+label-volume-background = ${colors.color3}
+label-volume-underline = ${colors.background}
+label-volume-overline = ${colors.background}
+format-muted-prefix = " "
+format-muted-prefix-underline = ${colors.background}
+format-muted-prefix-overline = ${colors.background}
+format-muted-foreground = ${colors.background}
+format-muted-background = ${colors.color3}
+label-muted = sound muted
+label-muted-underline = ${colors.background}
+label-muted-overline = ${colors.background}
+ramp-volume-0 = " "
+ramp-volume-0-foreground = ${colors.background}
+ramp-volume-0-background = ${colors.color3}
+ramp-volume-0-underline = ${colors.background}
+ramp-volume-0-overline = ${colors.background}
+ramp-volume-1 = " "
+ramp-volume-1-foreground = ${colors.background}
+ramp-volume-1-background = ${colors.color3}
+ramp-volume-1-underline = ${colors.background}
+ramp-volume-1-overline = ${colors.background}
+ramp-volume-2 = " "
+ramp-volume-2-foreground = ${colors.background}
+ramp-volume-2-background = ${colors.color3}
+ramp-volume-2-underline = ${colors.background}
+ramp-volume-2-overline = ${colors.background}
+ramp-volume-3 = " "
+ramp-volume-3-foreground = ${colors.background}
+ramp-volume-3-background = ${colors.color3}
+ramp-volume-3-underline = ${colors.background}
+ramp-volume-3-overline = ${colors.background}
+ramp-volume-4 = " "
+ramp-volume-4-foreground = ${colors.background}
+ramp-volume-4-background = ${colors.color3}
+ramp-volume-4-underline = ${colors.background}
+ramp-volume-4-overline = ${colors.background}
+ramp-headphones-0 = 
+ramp-headphones-1 = 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/right22]
+type = custom/text
+content-background = ${colors.color3}
+content-foreground = ${colors.color1}
+content = "%{T3}%{T-}"
+content-underline = ${colors.background}
+content-overline = ${colors.background}
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/right2]
+type = custom/text
+content-background = ${colors.color1}
+content-foreground = ${colors.color3}
+content = "%{T3}%{T-}"
+content-underline = ${colors.background}
+content-overline = ${colors.background}
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/date]
+type = internal/date
+interval = 5
+date =
+;date-alt = "%c"
+time = "%I:%M "
+;time-alt = "%R"
+format-prefix = 
+format-prefix-foreground = ${colors.background}
+format-prefix-background = ${colors.color3}
+format-underline = ${colors.background}
+format-overline = ${colors.background}
+label = %date% %time%
+label-background = ${colors.color3}
+label-foreground = ${colors.background}
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/right11]
+type = custom/text
+content-background = ${colors.color3}
+content-foreground = ${colors.color1}
+content = "%{T3}%{T-}"
+content-underline = ${colors.background}
+content-overline = ${colors.background}
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/right1]
+type = custom/text
+content-background = ${colors.color1}
+content-foreground = ${colors.background}
+content = "%{T3}%{T-}"
+content-underline = ${colors.background}
+content-overline = ${colors.background}
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/right88]
+type = custom/text
+content-background = ${colors.background}
+content-foreground = ${colors.color0}
+content = "%{T3}%{T-}"
+content-underline = ${colors.background}
+content-overline = ${colors.background}
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/mpd1]
+type = internal/mpd
+interval = 2
+format-online = <icon-prev><toggle><icon-next>
+label-song =" %artist% - %title%"
+label-song-maxlen = 25
+label-song-ellipsis = true
+label-offline = "MPD is offline"
+icon-play = 
+icon-pause = 
+icon-stop = 
+icon-prev = 
+icon-next = 
+icon-play-background = ${colors.color0}
+icon-play-foreground = ${colors.color7}
+icon-pause-background = ${colors.color0}
+icon-pause-foreground = ${colors.color7}
+icon-stop-background = ${colors.color0}
+icon-stop-foreground = ${colors.color7}
+icon-prev-background = ${colors.color0}
+icon-prev-foreground = ${colors.color7}
+icon-next-background = ${colors.color0}
+icon-next-foreground = ${colors.color7}
+icon-play-underline = ${colors.background}
+icon-play-overline = ${colors.background}
+icon-pause-underline = ${colors.background}
+icon-pause-overline = ${colors.background}
+icon-stop-underline = ${colors.background}
+icon-stop-overline = ${colors.background}
+icon-prev-underline = ${colors.background}
+icon-prev-overline = ${colors.background}
+icon-next-underline = ${colors.background}
+icon-next-overline = ${colors.background}
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/left1]
+type = custom/text
+content-background = ${colors.background}
+content-foreground = ${colors.color0}
+content = "%{T3}%{T-}"
+content-underline = ${colors.background}
+content-overline = ${colors.background}
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/right5]
+type = custom/text
+content-background = ${colors.color1}
+content-foreground = ${colors.background}
+content = "%{T3}%{T-}"
+content-underline = ${colors.background}
+content-overline = ${colors.background}
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/right55]
+type = custom/text
+content-background = ${colors.color3}
+content-foreground = ${colors.color1}
+content = "%{T3}%{T-}"
+content-underline = ${colors.background}
+content-overline = ${colors.background}
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;,
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix-foreground = ${colors.background}
+format-prefix-background = ${colors.color3}
+format-underline = ${colors.background}
+format-overline = ${colors.background}
+label =" %percentage:2%% "
+;format-prefix = " "
+label-background = ${colors.color3}
+label-foreground = ${colors.background}
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/right44]
+type = custom/text
+content-background = ${colors.color1}
+content-foreground = ${colors.color3}
+content = "%{T3}%{T-}"
+content-underline = ${colors.background}
+content-overline = ${colors.background}
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/right6]
+type = custom/text
+content-background = ${colors.color3}
+content-foreground = ${colors.color1}
+content = "%{T3}%{T-}"
+content-underline = ${colors.background}
+content-overline = ${colors.background}
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/memory]
+type = internal/memory
+interval = 2
+;format-prefix = " "
+format-prefix-foreground = ${colors.background}
+format-prefix-background = ${colors.color3}
+format-underline = ${colors.background}
+format-overline = ${colors.background}
+label = " %percentage_used%%  "
+label-background = ${colors.color3}
+label-foreground = ${colors.background}
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;,
+[module/right66]
+type = custom/text
+content-background = ${colors.color1}
+content-foreground = ${colors.color3}
+content = "%{T3}%{T-}"
+content-underline = ${colors.background}
+content-overline = ${colors.background}
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/right7]
+type = custom/text
+content-background = ${colors.color3}
+content-foreground = ${colors.color1}
+content = "%{T3}%{T-}"
+content-underline = ${colors.background}
+content-overline = ${colors.background}
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+format = <label><ramp>
+format-underline = ${colors.background}
+format-overline = ${colors.background}
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${colors.background}
+format-warn-overline = ${colors.background}
+label = " %temperature-c%  "
+label-background = ${colors.color3}
+label-foreground = ${colors.background}
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.background}
+label-warn-background = ${colors.color3}
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.background}
+ramp-background = ${colors.color3}
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/right77]
+type = custom/text
+content-background = ${colors.background}
+content-foreground = ${colors.color3}
+content = "%{T3}%{T-}"
+content-underline = ${colors.background}
+content-overline = ${colors.background}
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/xwindow]
+type = internal/xwindow
+label = "%{B#121212 F#00000000}%{T3}%{T-}%{B- F-}%{B#121212 F#c1c0c6} %title:0:50:...% %{B-}%{B#00000000 F#121212}%{T3}%{T-}%{B- F-}"
+label-underline  = #00000000
+label-overline  = #00000000
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/i3]
+type = internal/i3
+pin-workspaces = true
+strip-wsnumbers = true
+index-sort = true
+enable-click = true
+enable-scroll = false
+wrapping-scroll = false
+reverse-scroll = false
+fuzzy-match = true
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon-9 = 10;
+ws-icon-default = 
+format = <label-state><label-mode>
+label-mode = %state%
+label-mode-padding =0
+label-mode-background = ${colors.primary}
+;label-focused = %icon%
+label-focused ="%{B#965E55 F#00000000}%{T3}%{T-}%{B- F-}%{B#965E55 F#201f272b}  %{T3}%icon% %{T1}%name% %{B-}%{B#00000000 F#965E55}%{T3}%{T-}%{B- F-}" 
+label-focused-foreground = ${colors.color1}
+label-focused-background = #00000000
+label-focused-underline = #00000000
+label-focused-overline = #00000000
+label-focused-padding =0
+label-focused-font = 3
+
+label-unfocused ="%{B#121212 F#00000000}%{T3}%{T-}%{B- F-}%{B#121212 F#20495e69}  %{T3}%icon% %{T1}%name% %{B-}%{B#00000000 F#121212}%{T3}%{T-}%{B- F-}" 
+label-unfocused-foreground = ${colors.secondary}
+;label-unfocused-background = ${colors.b-alt}
+label-unfocused-background = #00000000
+label-unfocused-underline  = #00000000
+label-unfocused-overline  = #00000000
+label-unfocused-padding =0
+label-unfocused-font = 3
+
+
+label-visible = %{T3}%icon% %{T1}%name%
+label-visible-background = #00000000
+label-visible-underline = #00000000
+label-visible-padding = 1
+label-visible-font = 3
+
+label-urgent ="%{B#965E55 F#00000000}%{T3}%{T-}%{B- F-}%{B#965E55 F#20c1c0c6}  !%{T1}%icon% %{T1}%name% %{B-}%{B#00000000 F#965E55}%{T3}%{T-}%{B- F-}" 
+label-urgent-foreground = #c1c0c6
+label-urgent-background = #00000000
+label-urgent-underline = #00000000
+label-urgent-overline = #00000000
+label-urgent-padding = 0
+label-urgent-font = 3
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;++++++++++++++++++++++++++++++++++++++++++++++++++++
+;;++++++++++++++++   SETTINGS ++++++++++++++++++++++++
+;;++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+[settings]
+throttle-output = 5
+throttle-output-for = 10
+throttle-input-for = 30
+compositing-background = source
+compositing-foreground = source
+compositing-overline = source
+compositing-underline = source
+compositing-border = source
+screenchange-reload = false
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+pseudo-transparency = false
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+enable-ipc = true
+; vim:ft=dosini
